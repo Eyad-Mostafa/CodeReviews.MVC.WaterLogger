@@ -1,0 +1,32 @@
+﻿@page
+@model WatterLogger.Pages.Food.UpdateModel
+@{
+}
+<h2>Update Record</h2>
+
+<div class="row">
+	<div class=" col-md-4">
+		<form method="post">
+			<input type="hidden" asp-for="Meal.Id" />
+			<div class="form-group">
+				<label asp-for="Meal.Date" class="control-label"></label>
+				<input type="date" asp-for="Meal.Date" class="form-control" value="@Model.Meal.Date.ToString("yyyy-MM-dd")" />
+				<span asp-validation-for="Meal.Date" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Meal.Meal" class="control-label"></label>
+				<select asp-for="Meal.Meal" class="form-control"
+						asp-items="Html.GetEnumSelectList<WatterLogger.Enums.MealsEnum>()">
+					<option value="">-- Select Meal --</option>
+				</select>
+
+				<span asp-validation-for="Meal.Meal" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Update" class="btn btn-success" />
+				<a class="btn btn-secondary" asp-area="" asp-page="./Food">Cancel</a>
+
+			</div>
+		</form>
+	</div>
+</div>

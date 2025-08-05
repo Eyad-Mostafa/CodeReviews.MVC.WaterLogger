@@ -1,0 +1,40 @@
+﻿@page
+@model WatterLogger.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Home page";
+}
+<h1>Drinks</h1>
+
+<a button type="button" class="btn btn-success" asp-area="" asp-page="./Create">
+    Add Record    
+</a>
+<button type="button" class="btn btn-success" onclick="calculate()">Calculate Total</button>
+<table id="records" class="table table-hover table-light overflow-scroll" style="margin: 20px">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Quantity</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model.Records)
+        {
+            <tr class="list-row">
+                <td>@record.Id</td>
+                <td>@record.Date.ToShortDateString()</td>
+                <td>@record.Quantity.ToString("0.##")</td>
+                <td>@record.Type</td>
+                <td>
+                    <a class="btn btn-primary" asp-area="" asp-page="./Update" asp-route-id="@record.Id">Edit</a>
+                    <a class="btn btn-danger" asp-area="" asp-page="./Delete" asp-route-id="@record.Id">Delete</a>
+                </td>
+            </tr>
+        }
+	</tbody>
+</table>
+
+<div id="result"></div>
